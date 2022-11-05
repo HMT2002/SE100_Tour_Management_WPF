@@ -1,0 +1,79 @@
+﻿<Window x:Class="Tour.AddHotelForGroup"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Tour"
+        mc:Ignorable="d"
+        Title="AddHotelForGroup"
+        Height="450"
+        Width="800"
+        Loaded="Window_Loaded">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="350" />
+            <RowDefinition Height="auto" />
+
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="250"/>
+                <RowDefinition Height="auto"/>
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0">
+                <ListView Name="lstViewAllKhachSan" >
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <TextBlock Text="{Binding Id}"></TextBlock>
+                            </StackPanel>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+            <Grid Grid.Row="1">
+                <ListView Name="lstViewGroupKhachSan">
+                    
+                </ListView>
+            </Grid>
+        </Grid>
+        
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+
+            
+            <Grid Grid.Column="1">
+
+                <Button Margin="0,0,150,0"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Width="100"
+                        Background="#38F605"
+                        Foreground="AliceBlue"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Content="Update"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Name="bntUpdate"
+                        Click="bntUpdate_Click" />
+
+                <Button Margin="150,0,0,0"
+                        Background="#f60c05"
+                        Foreground="#021f37"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Width="100"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Content="Cancel"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Name="btnCancel"
+                        Click="btnCancel_Click" />
+
+            </Grid>
+
+        </Grid>
+    </Grid>
+</Window>
