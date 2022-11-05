@@ -1,17 +1,21 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Drawing;
+using System.Globalization;
 using System.IO;
 using System.Linq;
 using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
+using System.Windows;
+using System.Windows.Data;
 using System.Windows.Media.Imaging;
 
 namespace Tour.Utils
 {
-    class Converter
+    public class Converter
     {
+
         public Random random = new Random();
         public string RandomString(int length)
         {
@@ -78,6 +82,7 @@ namespace Tour.Utils
 
         public BitmapImage ConvertByteToBitmapImage(Byte[] image)
         {
+
             BitmapImage bi = new BitmapImage();
             MemoryStream stream = new MemoryStream();
             if (image == null)
@@ -94,6 +99,8 @@ namespace Tour.Utils
             bi.StreamSource = ms;
             bi.EndInit();
             return bi;
+
+
         }
 
         public byte[] ConvertBitmapImageToBytes(BitmapImage bitmapImage)

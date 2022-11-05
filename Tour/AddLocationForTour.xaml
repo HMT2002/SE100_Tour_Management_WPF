@@ -5,8 +5,157 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tour"
         mc:Ignorable="d"
-        Title="AddLocationForTour" Height="450" Width="800">
+        xmlns:converter="clr-namespace:Tour.Utils"
+        Title="AddLocationForTour" Height="450" Width="800"
+        Loaded="Window_Loaded">
+    <Window.Resources>
+        <converter:BitmapImageConverter x:Key="BitmapImageConverter" />
+    </Window.Resources>
+
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="350" />
+            <RowDefinition Height="50*" />
+
+        </Grid.RowDefinitions>
+
+        <Grid Grid.Row="0"
+              Background="Aqua"
+              Margin="10">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="150*" />
+                <RowDefinition Height="150*" />
+            </Grid.RowDefinitions>
+            <Grid Grid.Row="0"
+                  Margin="10"
+                  Background="AliceBlue">
+                <ScrollViewer Margin="0,0,0,0"
+                              Height="auto"
+                              VerticalAlignment="Bottom">
+                    <ListBox Name="lstBxAllLocation"
+                             ItemsSource="{Binding ListAllLocation,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             SelectedItem="{Binding SelectedAllLocation}"
+                             PreviewMouseLeftButtonUp="lstBxAllLocation_PreviewMouseLeftButtonUp"
+                             >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="5"
+                                             IsItemsHost="True"
+                                             Width="auto"
+                                             Height="auto">
+                                </UniformGrid>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+
+                        <ItemsControl.ItemTemplate>
+                            <DataTemplate>
+                                <StackPanel>
+                                    <StackPanel Background="Yellow">
+                                        <Image Source="{Binding Picbi,Converter={StaticResource BitmapImageConverter}}"
+                                               Width="90"
+                                               Height="90"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                    </StackPanel>
+
+                                    <TextBlock Text="{Binding Ten}"
+                                               Margin="2"
+                                               HorizontalAlignment="Center" />
+                                    <TextBlock Text="{Binding Gia}"
+                                               Margin="2"
+                                               HorizontalAlignment="Center" />
+                                </StackPanel>
+                            </DataTemplate>
+                        </ItemsControl.ItemTemplate>
+
+
+                    </ListBox>
+
+                </ScrollViewer>
+            </Grid>
+            <Grid Grid.Row="1"
+                  Margin="10"
+                  Background="AliceBlue">
+                <ListBox Name="lstBxTourLocation"
+                         SelectedItem="{Binding SelectedTourLocation}"
+                         ItemsSource="{Binding ListTourLocation,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         PreviewMouseLeftButtonUp="lstBxTourLocation_PreviewMouseLeftButtonUp"
+                         >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="5"
+                                         IsItemsHost="True"
+                                         Width="auto"
+                                         Height="auto">
+                            </UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <StackPanel Background="Yellow">
+                                    <Image Source="{Binding Picbi,Converter={StaticResource BitmapImageConverter}}"
+                                           Width="90"
+                                           Height="90"
+                                           HorizontalAlignment="Center"
+                                           VerticalAlignment="Center" />
+                                </StackPanel>
+
+                                <TextBlock Text="{Binding Ten}"
+                                           Margin="2"
+                                           HorizontalAlignment="Center" />
+                                <TextBlock Text="{Binding Gia}"
+                                           Margin="2"
+                                           HorizontalAlignment="Center" />
+
+                            </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+
+                </ListBox>
+            </Grid>
+        </Grid>
+
+        <Grid Grid.Row="1"
+              VerticalAlignment="Bottom">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition />
+                <ColumnDefinition />
+            </Grid.ColumnDefinitions>
+
+
+
+            <Grid Grid.Column="1">
+
+                <Button Margin="0,0,150,20"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Width="100"
+                        Background="#38F605"
+                        Foreground="#110dcb"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Content="Update"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Name="bntUpdate"
+                        Click="bntUpdate_Click" />
+
+                <Button Margin="150,0,0,20"
+                        Background="#f60c05"
+                        Foreground="#021f37"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Width="100"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Content="Cancel"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Name="btnCancel"
+                        Click="btnCancel_Click" />
+
+            </Grid>
+
+        </Grid>
     </Grid>
 </Window>

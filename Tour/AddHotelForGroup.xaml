@@ -8,38 +8,135 @@
         Title="AddHotelForGroup"
         Height="450"
         Width="800"
-        Loaded="Window_Loaded">
+        Loaded="Window_Loaded"
+        xmlns:converter="clr-namespace:Tour.Utils"
+        >
+    <Window.Resources>
+        <converter:BitmapImageConverter x:Key="BitmapImageConverter" />
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="/1187093.jpg" />
+    </Window.Background>
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="350" />
-            <RowDefinition Height="auto" />
+            <RowDefinition Height="50*" />
 
         </Grid.RowDefinitions>
 
-        <Grid Grid.Row="0">
+        <Grid Grid.Row="0"
+              Background="Aqua"
+              Margin="10"
+              >
             <Grid.RowDefinitions>
-                <RowDefinition Height="250"/>
-                <RowDefinition Height="auto"/>
+                <RowDefinition Height="150*" />
+                <RowDefinition Height="150*" />
             </Grid.RowDefinitions>
-            <Grid Grid.Row="0">
-                <ListView Name="lstViewAllKhachSan" >
-                    <ListView.ItemTemplate>
+            <Grid Grid.Row="0"
+                  Margin="10"
+                  Background="AliceBlue"
+                  >
+                <ScrollViewer Margin="0,0,0,0"
+                              Height="auto"
+                              VerticalAlignment="Bottom"
+                              >
+                    <ListBox Name="lstBxAllKhachSan"
+                             ItemsSource="{Binding ListAllKhachSan,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                             SelectedItem="{Binding SelectedAllKhachSan}"
+                             PreviewMouseLeftButtonUp="lstBxAllKhachSan_PreviewMouseLeftButtonUp"
+                             >
+                        <ItemsControl.ItemsPanel>
+                            <ItemsPanelTemplate>
+                                <UniformGrid Columns="5"
+                                             IsItemsHost="True"
+                                             Width="auto"
+                                             Height="auto">
+                                </UniformGrid>
+                            </ItemsPanelTemplate>
+                        </ItemsControl.ItemsPanel>
+
+
+                        <ItemsControl.ItemTemplate>
                         <DataTemplate>
                             <StackPanel>
-                                <TextBlock Text="{Binding Id}"></TextBlock>
+                                    <StackPanel Background="Yellow">
+                                        <Image Source="{Binding Picbi,Converter={StaticResource BitmapImageConverter}}"
+                                               Width="90"
+                                               Height="90"
+                                               HorizontalAlignment="Center"
+                                               VerticalAlignment="Center" />
+                                    </StackPanel>
+
+                                    <TextBlock Text="{Binding Ten}"
+                                               Margin="2"
+                                               HorizontalAlignment="Center"
+                                               />
+                                    <TextBlock Text="{Binding Gia}"
+                                               Margin="2"
+                                               HorizontalAlignment="Center" />
+                                </StackPanel>
+                        </DataTemplate>
+                    </ItemsControl.ItemTemplate>
+
+                        
+                </ListBox>
+
+                </ScrollViewer>
+            </Grid>
+            <Grid Grid.Row="1"
+                  Margin="10"
+                  Background="AliceBlue"
+                  >
+                <ListBox Name="lstBxGroupKhachSan"
+                         SelectedItem="{Binding SelectedGroupKhachSan}"
+                         ItemsSource="{Binding ListGroupKhachSan,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                         PreviewMouseLeftButtonUp="lstBxGroupKhachSan_PreviewMouseLeftButtonUp"
+                         >
+                    <ItemsControl.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <UniformGrid Columns="5"
+                                         IsItemsHost="True"
+                                         Width="auto"
+                                         Height="auto">
+                            </UniformGrid>
+                        </ItemsPanelTemplate>
+                    </ItemsControl.ItemsPanel>
+
+
+                    <ItemsControl.ItemTemplate>
+                        <DataTemplate>
+                            <StackPanel>
+                                <StackPanel 
+                                    Background="Yellow"
+                                    >
+                                <Image Source="{Binding Picbi,Converter={StaticResource BitmapImageConverter}}"
+                                       Width="90"
+                                       Height="90"
+                                       HorizontalAlignment="Center"
+                                       VerticalAlignment="Center"
+                                       
+                                       />                                    
+                                </StackPanel>
+
+                                <TextBlock Text="{Binding Ten}"
+                                           Margin="2"
+                                           HorizontalAlignment="Center" />
+                                <TextBlock Text="{Binding Gia}"
+                                           Margin="2"
+                                           HorizontalAlignment="Center" />
+
                             </StackPanel>
                         </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
-            </Grid>
-            <Grid Grid.Row="1">
-                <ListView Name="lstViewGroupKhachSan">
-                    
-                </ListView>
+                    </ItemsControl.ItemTemplate>
+
+
+                </ListBox>
             </Grid>
         </Grid>
-        
-        <Grid Grid.Row="1">
+
+        <Grid Grid.Row="1"
+              VerticalAlignment="Bottom"
+              >
 
             <Grid.ColumnDefinitions>
                 <ColumnDefinition />
@@ -47,21 +144,23 @@
             </Grid.ColumnDefinitions>
 
 
-            
-            <Grid Grid.Column="1">
 
-                <Button Margin="0,0,150,0"
+            <Grid Grid.Column="1" 
+                  >
+
+                <Button Margin="0,0,150,20"
                         Style="{StaticResource MaterialDesignRaisedButton}"
                         Width="100"
                         Background="#38F605"
-                        Foreground="AliceBlue"
+                        Foreground="#110dcb"
                         ToolTip="Resource name: MaterialDesignRaisedButton"
                         Content="Update"
                         IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
                         Name="bntUpdate"
-                        Click="bntUpdate_Click" />
+                        Click="bntUpdate_Click" 
+                        />
 
-                <Button Margin="150,0,0,0"
+                <Button Margin="150,0,0,20"
                         Background="#f60c05"
                         Foreground="#021f37"
                         Style="{StaticResource MaterialDesignRaisedButton}"
