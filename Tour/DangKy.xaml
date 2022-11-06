@@ -5,8 +5,491 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Tour"
         mc:Ignorable="d"
-        Title="DangKy" Height="450" Width="800">
+        Title="DangKy"
+        Height="450"
+        Width="800"
+        Loaded="Window_Loaded"
+        xmlns:converter="clr-namespace:Tour.Utils"
+        xmlns:materialDesign="http://materialdesigninxaml.net/winfx/xaml/themes">
+
+    <Window.Resources>
+        <converter:EnumMatchToBooleanConverter x:Key="EnumMatchToBooleanConverter" />
+    </Window.Resources>
+    <Window.Background>
+        <ImageBrush ImageSource="/24115.jpg"
+                    Stretch="Fill" />
+    </Window.Background>
     <Grid>
-        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="100*" />
+            <RowDefinition Height="500*" />
+            <RowDefinition Height="100*" />
+        </Grid.RowDefinitions>
+        <Grid Grid.Row="0">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="150*" />
+                <ColumnDefinition Width="750*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Grid Grid.Column="0">
+                <Button Margin="0,0,20,10"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Width="100"
+                        Foreground="#000"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Content="Back"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Name="bntBack">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1"
+                                             StartPoint="0.5,0">
+                            <GradientStop Color="#FFEFF1F1" />
+                            <GradientStop Color="#FF3DE8EC"
+                                          Offset="1" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+
+            </Grid>
+
+        </Grid>
+
+
+        <Grid Grid.Row="1">
+
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="350*" />
+                <ColumnDefinition Width="350*" />
+                <ColumnDefinition Width="250*" />
+            </Grid.ColumnDefinitions>
+
+
+            <Grid Grid.Column="0">
+                <Grid>
+                    <Grid.RowDefinitions>
+                        <RowDefinition Height="40*" />
+                        <RowDefinition Height="10*" />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+                        <StackPanel>
+                            <StackPanel.Resources>
+
+                                <Style TargetType="{x:Type TextBox}">
+                                    <Setter Property="Margin"
+                                            Value="0,10,0,0" />
+                                    <Setter Property="Height"
+                                            Value="20" />
+                                    <Setter Property="Width"
+                                            Value="200" />
+                                </Style>
+
+                            </StackPanel.Resources>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <materialDesign:PackIcon Kind="Account"
+                                                         Margin="0,10,10,0" />
+
+                                <TextBox x:Name="txtbxName"
+                                         materialDesign:HintAssist.Hint="Name" 
+                                         
+                                         />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <materialDesign:PackIcon Kind="HomeMapMarker"
+                                                         Margin="0,10,10,0" />
+
+                                <TextBox x:Name="txtbxAddress"
+                                         materialDesign:HintAssist.Hint="Address" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <materialDesign:PackIcon Kind="Phone"
+                                                         Margin="0,10,10,0" />
+
+                                <TextBox x:Name="txtbxPhone"
+                                         materialDesign:HintAssist.Hint="Phone" 
+                                         MaxLength="12"
+                                         PreviewTextInput="TextInputNumericOnly"
+                                         />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <materialDesign:PackIcon Kind="Email"
+                                                         Margin="0,10,10,0" />
+
+                                <TextBox x:Name="txtbxEmail"
+                                         materialDesign:HintAssist.Hint="Email" />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal">
+
+                                <materialDesign:PackIcon Kind="CardAccountDetailsOutline"
+                                                         Margin="0,10,10,0" />
+
+                                <TextBox x:Name="txtbxCMND"
+                                         materialDesign:HintAssist.Hint="ID"
+                                         MaxLength="12"
+                                         PreviewTextInput="TextInputNumericOnly" 
+                                         />
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Height="30">
+
+                                <materialDesign:PackIcon Kind="GenderMaleFemale"
+                                                         Margin="5" />
+
+                                <Grid Width="150">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <RadioButton Style="{StaticResource MaterialDesignLightRadioButton}"
+                                                     Content="Male"
+                                                     IsChecked="True"
+                                                     Foreground="Black"
+                                                     Background="#FF6310F9"
+                                                     Name="rdbtnMale">
+
+                                        </RadioButton>
+                                        <RadioButton Style="{StaticResource MaterialDesignLightRadioButton}"
+                                                     Content="Female"
+                                                     Foreground="Black"
+                                                     Background="#FF6310F9"
+                                                     Name="rdbtnFemale">
+                                        </RadioButton>
+                                    </StackPanel>
+
+
+                                </Grid>
+
+
+
+
+                            </StackPanel>
+
+                            <StackPanel Orientation="Horizontal"
+                                        Height="30">
+
+                                <materialDesign:PackIcon Kind="BusStopUncovered"
+                                                         Margin="5" />
+
+                                <Grid Width="150">
+
+                                    <StackPanel Orientation="Horizontal">
+                                        <RadioButton Style="{StaticResource MaterialDesignLightRadioButton}"
+                                                     Content="Domestic"
+                                                     IsChecked="True"
+                                                     Foreground="Black"
+                                                     Background="#FF6310F9"
+                                                     Name="rdbtnDomestic">
+
+                                        </RadioButton>
+                                        <RadioButton Style="{StaticResource MaterialDesignLightRadioButton}"
+                                                     Content="Foreign"
+                                                     Foreground="Black"
+                                                     Background="#FF6310F9"
+                                                     Name="rdbtnForeign">
+                                        </RadioButton>
+                                    </StackPanel>
+
+
+                                </Grid>
+
+
+
+
+                            </StackPanel>
+
+                        </StackPanel>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+                        <Button Style="{StaticResource MaterialDesignRaisedButton}"
+                                Width="100"
+                                Foreground="#110dcb"
+                                ToolTip="Resource name: MaterialDesignRaisedButton"
+                                Content="Clear"
+                                IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                                Name="bntClear"
+                                Click="bntClear_Click">
+                            <Button.Background>
+                                <LinearGradientBrush EndPoint="0.5,1"
+                                                     StartPoint="0.5,0">
+                                    <GradientStop Color="#FFEFF1F1" />
+                                    <GradientStop Color="#FF3DE8EC"
+                                                  Offset="1" />
+                                </LinearGradientBrush>
+                            </Button.Background>
+                        </Button>
+
+                    </Grid>
+
+                </Grid>
+
+
+
+
+            </Grid>
+
+            <Grid Grid.Column="1">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="700*" />
+                    <RowDefinition Height="500*" />
+                </Grid.RowDefinitions>
+
+
+                <Grid Grid.Row="0">
+                    <StackPanel>
+                        <StackPanel.Resources>
+
+                            <Style TargetType="{x:Type TextBox}">
+
+                            </Style>
+
+                        </StackPanel.Resources>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="5">
+                            <materialDesign:PackIcon Kind="Earth" />
+                            <ComboBox 
+                                      materialDesign:HintAssist.Hint="Tour"
+                                      ItemsSource="{Binding ListAllTour,Mode=TwoWay}"
+                                      materialDesign:TextFieldAssist.HasClearButton="True"
+                                      Width="250"
+                                      Height="30"
+                                      Margin="10,0,0,0"
+                                      Name="cbbxTour"
+                                      SelectedItem="{Binding SelectedTour,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="Ten"
+                                      SelectionChanged="cbbxTour_SelectionChanged"
+                                      >
+
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="5">
+                            <materialDesign:PackIcon Kind="AccountGroupOutline" />
+                            <ComboBox 
+                                      materialDesign:HintAssist.Hint="Group"
+                                      ItemsSource="{Binding ListDoan,Mode=TwoWay}"
+                                      materialDesign:TextFieldAssist.HasClearButton="True"
+                                      Width="250"
+                                      Height="30"
+                                      Margin="10,0,0,0"
+                                      Name="cbbxGroup"
+                                      SelectedItem="{Binding SelectedGroup,Mode=TwoWay,UpdateSourceTrigger=PropertyChanged}"
+                                      DisplayMemberPath="Ten"
+                                      SelectionChanged="cbbxGroup_SelectionChanged"
+                                      >
+                            </ComboBox>
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="5">
+                            <materialDesign:PackIcon Kind="AirplaneClock" />
+                            <DatePicker Width="250"
+                                        Margin="10,0,0,0"
+                                        SelectedDate="{Binding Startdate}"
+                                        Background="AliceBlue"
+                                        Name="datepickStart">
+                                <DatePicker.Resources>
+                                    <Style TargetType="DatePickerTextBox">
+                                        <Setter Property="IsReadOnly"
+                                                Value="True" />
+                                    </Style>
+
+                                </DatePicker.Resources>
+
+                            </DatePicker>
+
+                        </StackPanel>
+
+                        <StackPanel Orientation="Horizontal"
+                                    Margin="5">
+                            <materialDesign:PackIcon Kind="Timetable" />
+                            <TextBox x:Name="txtbxDuration"
+                                     materialDesign:HintAssist.Hint="Duration"
+                                     Width="250"
+                                     Margin="10,0,0,0" />
+                        </StackPanel>
+
+                    </StackPanel>
+
+
+                </Grid>
+
+
+                <Grid Grid.Row="1">
+
+                    <Grid.RowDefinitions>
+                        <RowDefinition />
+                        <RowDefinition />
+                        <RowDefinition />
+                    </Grid.RowDefinitions>
+
+                    <Grid Grid.Row="0">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45*" />
+                                <ColumnDefinition Width="120*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <Label Content="Price"
+                                       Foreground="Black"
+                                       Margin="5" />
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <TextBox x:Name="txtbxPrice"
+                                         Width="200"
+                                         Margin="5" />
+
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid Grid.Row="1">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45*" />
+                                <ColumnDefinition Width="120*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <Label Content="Discount"
+                                       Foreground="Black"
+                                       Margin="5" />
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <TextBox x:Name="txtbxDiscount"
+                                         Width="200"
+                                         Margin="5" />
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+
+                    <Grid Grid.Row="2">
+
+                        <Grid>
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="45*" />
+                                <ColumnDefinition Width="120*" />
+                            </Grid.ColumnDefinitions>
+
+                            <Grid Grid.Column="0">
+                                <Label Content="Summary"
+                                       Foreground="Black"
+                                       Margin="5" />
+                            </Grid>
+
+                            <Grid Grid.Column="1">
+                                <TextBox x:Name="txtbxSum"
+                                         Width="200"
+                                         Margin="5" />
+                            </Grid>
+                        </Grid>
+
+                    </Grid>
+
+                </Grid>
+
+
+            </Grid>
+
+            <Grid Grid.Column="2">
+
+            </Grid>
+
+        </Grid>
+
+        <Grid Grid.Row="2">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="300*" />
+                <ColumnDefinition Width="750*" />
+            </Grid.ColumnDefinitions>
+
+            <Grid Grid.Column="0">
+
+                <Button Margin="0,20,0,0"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Width="200"
+                        Foreground="#000"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Content="Go to Ticket database"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Name="bntGotoTicketDatabase"
+                        Click="bntGotoTicketDatabase_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1"
+                                             StartPoint="0.5,0">
+                            <GradientStop Color="#FFEFF1F1" />
+                            <GradientStop Color="#FF3DE8EC"
+                                          Offset="1" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </Grid>
+
+            <Grid Grid.Column="1">
+
+                <Button Margin="200,20,0,0"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Width="100"
+                        Foreground="#110dcb"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Content="Create"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Name="bntCreate"
+                        Click="bntCreate_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1"
+                                             StartPoint="0.5,0">
+                            <GradientStop Color="#FFEFF1F1" />
+                            <GradientStop Color="#FF3DE8EC"
+                                          Offset="1" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+
+                <Button Margin="450,20,0,0"
+                        Foreground="#021f37"
+                        Style="{StaticResource MaterialDesignRaisedButton}"
+                        Width="100"
+                        ToolTip="Resource name: MaterialDesignRaisedButton"
+                        Content="Cancel"
+                        IsEnabled="{Binding DataContext.ControlsEnabled, RelativeSource={RelativeSource FindAncestor, AncestorType=Window}}"
+                        Name="btnCancel"
+                        Click="btnCancel_Click">
+                    <Button.Background>
+                        <LinearGradientBrush EndPoint="0.5,1"
+                                             StartPoint="0.5,0">
+                            <GradientStop Color="#FFEFF1F1" />
+                            <GradientStop Color="#FF3DE8EC"
+                                          Offset="1" />
+                        </LinearGradientBrush>
+                    </Button.Background>
+                </Button>
+            </Grid>
+
+        </Grid>
     </Grid>
 </Window>
